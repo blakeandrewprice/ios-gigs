@@ -9,21 +9,29 @@
 /* Begin PBXBuildFile section */
 		9139B62D23738AA0009689B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9139B62C23738AA0009689B3 /* AppDelegate.swift */; };
 		9139B62F23738AA0009689B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9139B62E23738AA0009689B3 /* SceneDelegate.swift */; };
-		9139B63123738AA0009689B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9139B63023738AA0009689B3 /* ViewController.swift */; };
 		9139B63423738AA0009689B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9139B63223738AA0009689B3 /* Main.storyboard */; };
 		9139B63623738AA4009689B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9139B63523738AA4009689B3 /* Assets.xcassets */; };
 		9139B63923738AA4009689B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9139B63723738AA4009689B3 /* LaunchScreen.storyboard */; };
+		91F601D32374AF6F0097DA12 /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F601D22374AF6F0097DA12 /* GigsTableViewController.swift */; };
+		91F601D62374B2750097DA12 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F601D52374B2750097DA12 /* LoginViewController.swift */; };
+		91F601D82374B4410097DA12 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F601D72374B4410097DA12 /* Bearer.swift */; };
+		91F601DA2374B4D10097DA12 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F601D92374B4D10097DA12 /* User.swift */; };
+		91F601DC2374B5730097DA12 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F601DB2374B5730097DA12 /* GigController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9139B62923738AA0009689B3 /* Gigs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gigs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9139B62C23738AA0009689B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9139B62E23738AA0009689B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9139B63023738AA0009689B3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9139B63323738AA0009689B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9139B63523738AA4009689B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9139B63823738AA4009689B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9139B63A23738AA4009689B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91F601D22374AF6F0097DA12 /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
+		91F601D52374B2750097DA12 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		91F601D72374B4410097DA12 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		91F601D92374B4D10097DA12 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		91F601DB2374B5730097DA12 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +64,43 @@
 		9139B62B23738AA0009689B3 /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
-				9139B62C23738AA0009689B3 /* AppDelegate.swift */,
-				9139B62E23738AA0009689B3 /* SceneDelegate.swift */,
-				9139B63023738AA0009689B3 /* ViewController.swift */,
-				9139B63223738AA0009689B3 /* Main.storyboard */,
-				9139B63523738AA4009689B3 /* Assets.xcassets */,
-				9139B63723738AA4009689B3 /* LaunchScreen.storyboard */,
+				91F601D02374AC870097DA12 /* Application */,
+				91F601D12374AC9E0097DA12 /* Storyboard */,
+				91F601D42374AF770097DA12 /* Controllers */,
+				91F601D72374B4410097DA12 /* Bearer.swift */,
+				91F601D92374B4D10097DA12 /* User.swift */,
 				9139B63A23738AA4009689B3 /* Info.plist */,
 			);
 			path = Gigs;
+			sourceTree = "<group>";
+		};
+		91F601D02374AC870097DA12 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				9139B62C23738AA0009689B3 /* AppDelegate.swift */,
+				9139B62E23738AA0009689B3 /* SceneDelegate.swift */,
+				9139B63523738AA4009689B3 /* Assets.xcassets */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		91F601D12374AC9E0097DA12 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				9139B63223738AA0009689B3 /* Main.storyboard */,
+				9139B63723738AA4009689B3 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		91F601D42374AF770097DA12 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				91F601D22374AF6F0097DA12 /* GigsTableViewController.swift */,
+				91F601D52374B2750097DA12 /* LoginViewController.swift */,
+				91F601DB2374B5730097DA12 /* GigController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +174,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9139B63123738AA0009689B3 /* ViewController.swift in Sources */,
+				91F601D82374B4410097DA12 /* Bearer.swift in Sources */,
+				91F601DC2374B5730097DA12 /* GigController.swift in Sources */,
+				91F601D62374B2750097DA12 /* LoginViewController.swift in Sources */,
+				91F601DA2374B4D10097DA12 /* User.swift in Sources */,
 				9139B62D23738AA0009689B3 /* AppDelegate.swift in Sources */,
 				9139B62F23738AA0009689B3 /* SceneDelegate.swift in Sources */,
+				91F601D32374AF6F0097DA12 /* GigsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
