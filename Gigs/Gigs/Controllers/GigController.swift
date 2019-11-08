@@ -105,7 +105,7 @@ class GigController {
         }.resume()
     }
     
-    func fetchAllGigNames(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+    func fetchAllGigTitles(completion: @escaping (Result<[String], NetworkError>) -> Void) {
         guard let bearer = bearer else {
             completion(.failure(.noAuth))
             return
@@ -125,7 +125,7 @@ class GigController {
             }
             
             if let error = error {
-                print("Error receiving gig name data: \(error)")
+                print("Error receiving gig title data: \(error)")
                 completion(.failure(.otherError))
                 return
             }
@@ -137,8 +137,8 @@ class GigController {
             
             let decoder = JSONDecoder()
             do {
-                let gigNames = try decoder.decode([String].self, from: data)
-                completion(.success(gigNames))
+                let gigTitles = try decoder.decode([String].self, from: data)
+                completion(.success(gigTitles))
             } catch {
                 print("Error decoding gig objects: \(error)")
                 completion(.failure(.noDecode))
@@ -147,13 +147,13 @@ class GigController {
         }.resume()
     }
     
-    func fetchDetails(for gigName: String, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+    func fetchDetails(for gigTitle: String, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
         guard let bearer = bearer else {
             completion(.failure(.noAuth))
             return
         }
         
-        let gigUrl = baseUrl.appendingPathComponent("gigs/\(gigName)")
+        let gigUrl = baseUrl.appendingPathComponent("gigs/\(gigTitle)")
         
         var request = URLRequest(url: gigUrl)
         request.httpMethod = HTTPMethod.get.rawValue
@@ -161,7 +161,7 @@ class GigController {
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                print("Error receiving gig (\(gigName)) details: \(error)")
+                print("Error receiving gig (\(gigTitle)) details: \(error)")
                 completion(.failure(.otherError))
                 return
             }
@@ -178,7 +178,7 @@ class GigController {
             }
             
             let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .secondsSince1970
+            decoder.dateDecodingStrategy = .iso8601
             do {
                 let gig = try decoder.decode(Gig.self, from: data)
                 completion(.success(gig))
