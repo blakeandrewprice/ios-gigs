@@ -75,10 +75,10 @@
             </objects>
             <point key="canvasLocation" x="1160.8695652173915" y="693.75"/>
         </scene>
-        <!--View Controller-->
+        <!--Gig Detail View Controller-->
         <scene sceneID="deD-0s-WsN">
             <objects>
-                <viewController id="JpY-N6-1zI" sceneMemberID="viewController">
+                <viewController id="JpY-N6-1zI" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1SW-b7-bM0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -143,8 +143,17 @@
                         <viewLayoutGuide key="safeArea" id="ZM1-XK-d8B"/>
                     </view>
                     <navigationItem key="navigationItem" id="IPm-a9-HUV">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="YOX-R1-1YP"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="YOX-R1-1YP">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="JpY-N6-1zI" id="if0-1z-82m"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="Lkn-XJ-Xeo" id="Mlu-GT-xyz"/>
+                        <outlet property="descriptionTextView" destination="YnY-Uf-nVL" id="XJG-Kp-ZVp"/>
+                        <outlet property="jobTitleTextField" destination="dQ5-TK-19z" id="XyD-ZE-2Mr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VHS-Ih-059" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

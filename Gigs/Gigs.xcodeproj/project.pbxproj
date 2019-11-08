@@ -17,6 +17,8 @@
 		91F601D82374B4410097DA12 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F601D72374B4410097DA12 /* Bearer.swift */; };
 		91F601DA2374B4D10097DA12 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F601D92374B4D10097DA12 /* User.swift */; };
 		91F601DC2374B5730097DA12 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F601DB2374B5730097DA12 /* GigController.swift */; };
+		91F601DE2374D70F0097DA12 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F601DD2374D70F0097DA12 /* GigDetailViewController.swift */; };
+		91F601E02374D8F80097DA12 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F601DF2374D8F80097DA12 /* Gig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		91F601D72374B4410097DA12 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		91F601D92374B4D10097DA12 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		91F601DB2374B5730097DA12 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
+		91F601DD2374D70F0097DA12 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
+		91F601DF2374D8F80097DA12 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,8 +71,7 @@
 				91F601D02374AC870097DA12 /* Application */,
 				91F601D12374AC9E0097DA12 /* Storyboard */,
 				91F601D42374AF770097DA12 /* Controllers */,
-				91F601D72374B4410097DA12 /* Bearer.swift */,
-				91F601D92374B4D10097DA12 /* User.swift */,
+				91F601E12374D9070097DA12 /* Models */,
 				9139B63A23738AA4009689B3 /* Info.plist */,
 			);
 			path = Gigs;
@@ -96,11 +99,22 @@
 		91F601D42374AF770097DA12 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				91F601D22374AF6F0097DA12 /* GigsTableViewController.swift */,
 				91F601D52374B2750097DA12 /* LoginViewController.swift */,
 				91F601DB2374B5730097DA12 /* GigController.swift */,
+				91F601D22374AF6F0097DA12 /* GigsTableViewController.swift */,
+				91F601DD2374D70F0097DA12 /* GigDetailViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		91F601E12374D9070097DA12 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				91F601DF2374D8F80097DA12 /* Gig.swift */,
+				91F601D92374B4D10097DA12 /* User.swift */,
+				91F601D72374B4410097DA12 /* Bearer.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,12 +189,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				91F601D82374B4410097DA12 /* Bearer.swift in Sources */,
+				91F601DE2374D70F0097DA12 /* GigDetailViewController.swift in Sources */,
 				91F601DC2374B5730097DA12 /* GigController.swift in Sources */,
 				91F601D62374B2750097DA12 /* LoginViewController.swift in Sources */,
 				91F601DA2374B4D10097DA12 /* User.swift in Sources */,
 				9139B62D23738AA0009689B3 /* AppDelegate.swift in Sources */,
 				9139B62F23738AA0009689B3 /* SceneDelegate.swift in Sources */,
 				91F601D32374AF6F0097DA12 /* GigsTableViewController.swift in Sources */,
+				91F601E02374D8F80097DA12 /* Gig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
