@@ -9,7 +9,17 @@
 import UIKit
 
 class GigsTableViewController: UITableViewController {
-
+    //MARK: - Properties
+    var gigController = GigController()
+    
+    let dateFormatter: DateFormatter =  {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yy"
+        dateFormatter.locale = Locale(identifier: "en_US")
+        return dateFormatter
+    }()
+    
+    //MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -19,15 +29,16 @@ class GigsTableViewController: UITableViewController {
         
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginViewSegue", sender: self)
+        } else {
+            gigController.fetchAllGigs { (result) in
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
         }
     }
     
-    var gigController = GigController()
-    
-    let dateFormatter = DateFormatter()
-    
     // MARK: - Table View Data Source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -37,9 +48,6 @@ class GigsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        dateFormatter.dateFormat = "mm/dd/yy"
-        dateFormatter.locale = Locale(identifier: "en_US")
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
         let date = gigController.gigs[indexPath.row].dueDate
         cell.textLabel?.text = gigController.gigs[indexPath.row].title
@@ -48,18 +56,23 @@ class GigsTableViewController: UITableViewController {
         return cell
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "LoginViewSegue" {
-//            if let loginVC = segue.destination as? LoginViewController {
-//                loginVC.gigController = gigController
-//            }
-//        } else if segue.identifier == "ShowDetailSegue" {
-//            if let detailVC = segue.destination as? GigDetailViewController {
-//                if let indexPath = tableView.indexPathForSelectedRow {
-//                    detailVC. = gigController.gigs[indexPath.row].title
-//                }
-//                detailVC.gigController = gigController
-//            }
-//        }
-//    }
+    //MARK: - Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "LoginViewSegue" {
+            if let loginVC = segue.destination as? LoginViewController {
+                loginVC.gigController = gigController
+            }
+        } else if segue.identifier == "ShowGigSegue" {
+            if let detailVC = segue.destination as? GigDetailViewController {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    detailVC.gig = gigController.gigs[indexPath.row]
+                }
+                detailVC.gigController = gigController
+            }
+        } else if segue.identifier == "AddGigSegue" {
+            if let addVC = segue.destination as? GigDetailViewController {
+                addVC.gigController = gigController
+            }
+        }
+    }
 }

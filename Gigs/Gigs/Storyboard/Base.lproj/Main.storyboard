@@ -22,22 +22,19 @@
                                     <segment title="Sign In"/>
                                 </segments>
                                 <connections>
-                                    <action selector="signInTypeChanged:" destination="mTu-hk-X7O" eventType="valueChanged" id="huD-uS-HRm"/>
+                                    <action selector="signInTypeChanged:" destination="mTu-hk-X7O" eventType="valueChanged" id="VqN-FS-uxd"/>
                                 </connections>
                             </segmentedControl>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Gl-Y1-Lon">
                                 <rect key="frame" x="49" y="169" width="317" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="passwordTextField:" destination="mTu-hk-X7O" eventType="editingDidEnd" id="EhK-ZD-cBH"/>
-                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XRm-Os-hH8">
                                 <rect key="frame" x="140" y="229" width="134" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Sign Up"/>
                                 <connections>
-                                    <action selector="buttonTapped:" destination="mTu-hk-X7O" eventType="touchUpInside" id="AKm-eW-Ozc"/>
+                                    <action selector="buttonTapped:" destination="mTu-hk-X7O" eventType="touchUpInside" id="xbu-LT-kKG"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jAk-RM-s9j">
@@ -65,10 +62,10 @@
                         <viewLayoutGuide key="safeArea" id="lVX-jB-91h"/>
                     </view>
                     <connections>
-                        <outlet property="passwordTextField" destination="9Gl-Y1-Lon" id="18s-cW-J4S"/>
-                        <outlet property="segmentedControl" destination="n6q-Tm-kyI" id="d83-cL-Yzw"/>
-                        <outlet property="signInButton" destination="XRm-Os-hH8" id="MBj-pt-kZg"/>
-                        <outlet property="usernameTextField" destination="jAk-RM-s9j" id="kTt-9e-YdK"/>
+                        <outlet property="passwordTextField" destination="9Gl-Y1-Lon" id="beR-Ps-m99"/>
+                        <outlet property="segmentedControl" destination="n6q-Tm-kyI" id="QGY-yi-o4P"/>
+                        <outlet property="signInButton" destination="XRm-Os-hH8" id="QPk-WU-KOE"/>
+                        <outlet property="usernameTextField" destination="jAk-RM-s9j" id="KHR-Lg-KiP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ilh-V4-YnG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -168,7 +165,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnimalCell" textLabel="FbO-hj-eeN" detailTextLabel="XWf-Z1-Aja" style="IBUITableViewCellStyleValue1" id="2Jj-6a-xcP">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GigCell" textLabel="FbO-hj-eeN" detailTextLabel="XWf-Z1-Aja" style="IBUITableViewCellStyleValue1" id="2Jj-6a-xcP">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2Jj-6a-xcP" id="VGF-QP-pzn">
@@ -192,7 +189,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="JpY-N6-1zI" kind="show" identifier="ShowGig" id="Nna-af-yhE"/>
+                                    <segue destination="JpY-N6-1zI" kind="show" identifier="ShowGigSegue" id="Nna-af-yhE"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -204,7 +201,7 @@
                     <navigationItem key="navigationItem" id="0Qz-hh-Vxw">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ll8-4z-xwG">
                             <connections>
-                                <segue destination="JpY-N6-1zI" kind="show" identifier="AddGig" id="Ka2-9y-pO2"/>
+                                <segue destination="JpY-N6-1zI" kind="show" identifier="AddGigSegue" id="Ka2-9y-pO2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -14,25 +14,22 @@ enum LoginType {
 }
 
 class LoginViewController: UIViewController {
-
+    //MARK: - Outlets
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
     
+    //MARK: - Properties
     var gigController: GigController!
     var loginType = LoginType.signUp
     
-    
+    //MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        signInButton.backgroundColor = UIColor(hue: 190/360, saturation: 70/100, brightness: 80/100, alpha: 1.0)
-        signInButton.tintColor = .white
-        signInButton.layer.cornerRadius = 8.0
     }
     
+    //MARK: - Actions
     @IBAction func signInTypeChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             loginType = .signUp

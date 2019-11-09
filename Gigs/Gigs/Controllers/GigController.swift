@@ -23,10 +23,12 @@ enum NetworkError: Error {
 }
 
 class GigController {
+    //MARK: - Properties
     var gigs: [Gig] = []
     var bearer: Bearer?
     private let baseUrl = URL(string: "https://lambdagigs.vapor.cloud/api")!
     
+    //MARK: - SignUp()
     func signUp(with user: User, completion: @escaping (Error?) -> ()) {
         let signUpUrl = baseUrl.appendingPathComponent("users/signup")
         
@@ -59,6 +61,7 @@ class GigController {
         }.resume()
     }
     
+    //MARK: - SignIn()
     func signIn(with user: User, completion: @escaping (Error?) -> ()) {
         let loginUrl = baseUrl.appendingPathComponent("users/login")
         
@@ -100,18 +103,18 @@ class GigController {
                 completion(error)
                 return
             }
-            
             completion(nil)
         }.resume()
     }
     
-    func fetchAllGigTitles(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+    //MARK: - FetchAllGigs()
+    func fetchAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
         guard let bearer = bearer else {
             completion(.failure(.noAuth))
             return
         }
         
-        let allGigsUrl = baseUrl.appendingPathComponent("gigs/")
+        let allGigsUrl = baseUrl.appendingPathComponent("/gigs/")
         
         var request = URLRequest(url: allGigsUrl)
         request.httpMethod = HTTPMethod.get.rawValue
@@ -136,9 +139,11 @@ class GigController {
             }
             
             let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
             do {
-                let gigTitles = try decoder.decode([String].self, from: data)
-                completion(.success(gigTitles))
+                let decodedGigs = try decoder.decode([Gig].self, from: data)
+                self.gigs = decodedGigs
+                completion(.success(decodedGigs))
             } catch {
                 print("Error decoding gig objects: \(error)")
                 completion(.failure(.noDecode))
@@ -147,46 +152,45 @@ class GigController {
         }.resume()
     }
     
-    func fetchDetails(for gigTitle: String, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+    //MARK: - CreateGig()
+    func createGig(with gig: Gig, completion: @escaping (Error?) -> ()) {
         guard let bearer = bearer else {
-            completion(.failure(.noAuth))
+            completion(NetworkError.noAuth)
             return
         }
         
-        let gigUrl = baseUrl.appendingPathComponent("gigs/\(gigTitle)")
+        let createGigUrl = baseUrl.appendingPathComponent("/gigs/")
         
-        var request = URLRequest(url: gigUrl)
-        request.httpMethod = HTTPMethod.get.rawValue
+        var request = URLRequest(url: createGigUrl)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.dateEncodingStrategy = .iso8601
+        do {
+            let jsonData = try jsonEncoder.encode(gig)
+            request.httpBody = jsonData
+        } catch {
+            print("Error encoding gig object: \(error)")
+            completion(error)
+            return
+        }
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+           if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
+                print(String(data: data!, encoding: String.Encoding.utf8)!)
+                return
+            }
+            
             if let error = error {
-                print("Error receiving gig (\(gigTitle)) details: \(error)")
-                completion(.failure(.otherError))
+                completion(error)
                 return
             }
             
-            if let response = response as? HTTPURLResponse,
-                response.statusCode == 401 {
-                completion(.failure(.badAuth))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(.badData))
-                return
-            }
-            
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-            do {
-                let gig = try decoder.decode(Gig.self, from: data)
-                completion(.success(gig))
-            } catch {
-                print("Error decoding gig object: \(error)")
-                completion(.failure(.noDecode))
-                return
-            }
+            self.gigs.append(gig)
+            completion(nil)
         }.resume()
     }
 }
